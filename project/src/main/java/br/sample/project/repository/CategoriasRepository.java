@@ -1,5 +1,9 @@
 package br.sample.project.repository;
 
-public interface CategoriasRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import br.sample.project.model.Categoria;
+
+public interface CategoriasRepository extends JpaRepository<Categoria, Long>{
 
 }
