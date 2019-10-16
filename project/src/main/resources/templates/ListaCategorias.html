@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:th="http://www.thymeleaf.org">
+	xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width" />
@@ -8,17 +8,30 @@
 </head>
 <body>
 	<h1>Categorias!</h1>
+	
+	<a th:href="@{'/categorias/novo'}">Novo</a>
+
+	<form method="post" th:object="${categoria}" th:action="@{/categorias}">
+		<input type="hidden" th:field="*{id}" />
+		<input type="text" th:field="*{nome}" /> 
+		<input type="text" th:field="*{descricao}" />
+		<button type="submit">Salvar</button>
+	</form>
+
 	<table class="table">
 		<thead>
 			<tr>
 				<th>Nome</th>
 				<th>Descrição</th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr th:each="categoria : ${categorias}">
 				<td th:text="${categoria.nome}"></td>
 				<td th:text="${categoria.descricao}"></td>
+				<td><a th:href="@{'/categorias/' + ${categoria.id} + '/excluir'}">Excluir</a></td>
+				<td><a th:href="@{'/categorias/' + ${categoria.id} + '/editar'}">Editar</a></td>
 			</tr>
 		</tbody>
 	</table>
